@@ -1,0 +1,35 @@
+#factorial using function
+
+set serveroutput on
+create or replace function factorial(n in number)
+return number is
+fact number:=1;
+
+begin
+  if(n=0) then
+    fact:=1;
+  else
+    for i in 1..n 
+    loop
+      fact:=fact*i;
+    end loop;
+  end if;
+  return fact;
+end factorial;
+/
+
+declare
+  num number(10);
+  res number(10);
+begin
+  num:=&num;
+  
+  if num<0
+  then
+    dbms_output.put_line('invalid');
+  else
+    res:= factorial(num);
+    dbms_output.put_line('factorial of '||num||'is'||res);
+  end if;
+end;
+/
